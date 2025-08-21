@@ -41,7 +41,7 @@ pipeline {
                 // by default jenkins will use the master branch
                 // if you want to use a different branch, specify it here
                 git branch: 'main', url: 'https://github.com/Vanaja7226/simple-spring-api.git'
-
+            }
         }
 
         // stage to build the application using maven
@@ -143,4 +143,3 @@ pipeline {
 }
 
 // docker run -d --name simple-spring-api -p 9595:9595 simple-spring-api:latest
-
