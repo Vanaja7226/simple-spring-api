@@ -40,7 +40,8 @@ pipeline {
                 echo 'Cloning repository...'
                 // by default jenkins will use the master branch
                 // if you want to use a different branch, specify it here
-                git branch: 'main', url: 'https://github.com/Vanaja7226/simple-spring-api'
+                git branch: 'main', url: 'https://github.com/Vanaja7226/simple-spring-api.git'
+
         }
 
         // stage to build the application using maven
@@ -121,12 +122,12 @@ pipeline {
                     usernameVariable: 'DOCKERHUB_USERNAME',
                     passwordVariable: 'DOCKERHUB_PASSWORD'
                 )]) {
-                    sh """
+                    sh '''
                         echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
                         docker push ${DOCKER_IMAGE}:${IMAGE_TAG}
                         docker push ${DOCKER_IMAGE}:latest
                         docker logout || true
-                    """
+                    '''
                 }
             }
         }
